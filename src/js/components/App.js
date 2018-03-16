@@ -1,10 +1,10 @@
 
 import React from 'react'
-import MovieContainer from './MovieContainer'
+import MoviesContainer from './MoviesContainer'
 
 const App = () => {
   return (
-    <MovieContainer/>
+    <MoviesContainer/>
   )
 }
 

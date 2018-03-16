@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 
-class MovieContainer extends Component {
+class MoviesContainer extends Component {
   constructor(props) {
     super(props)
   }
@@ -12,9 +12,9 @@ class MovieContainer extends Component {
   }
   render() {
     return (
-      <h1>Hello from MovieContainer</h1>
+      <h1>Hello from MoviesContainer</h1>
     )
   }
 }
 
-export default MovieContainer
+export default MoviesContainer
