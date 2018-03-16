@@ -19,9 +19,7 @@ class MoviesContainer extends Component {
   
   //
   changeHandler (ev) {
-    if (ev.target.value === '') {
-      this.setState({ movies: [] })
-    }
+    if (ev.target.value === '') this.setState({ movies: [] })
     this.setState({ searchTerm: ev.target.value })
   }
   
@@ -44,14 +42,16 @@ class MoviesContainer extends Component {
   render() {
     const { movies } = this.state
     return (
-      <div>
-        <h1>Hello from MoviesContainer</h1>
+      <section>
+        <header>
+          <h1>Movie Finder</h1>
+        </header>
         <MovieInputForm
           submitHandler={this.submitHandler}
           searchTerm={this.state.searchTerm}
           changeHandler={this.changeHandler}/>
         {movies.length > 0 && <MovieList movies={movies} />}
-      </div>
+      </section>
     )
   }
 }
