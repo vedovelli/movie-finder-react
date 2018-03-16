@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const MovieList = props => {
   return props.movies.map(({ id, original_title }) => (
@@ -10,6 +11,10 @@ const MovieList = props => {
       </div>
     </li>
   ))
+}
+
+MovieList.propTypes = {
+  movies: PropTypes.array
 }
 
 export default MovieList
