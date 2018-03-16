@@ -2,8 +2,11 @@
 import React, { Component } from 'react'
 import { fetchMovies } from '../service/movie-api'
 import MovieList from './MovieList'
+import MovieInputForm from './MovieInputForm'
 
 class MoviesContainer extends Component {
+  
+  //
   constructor(props) {
     super(props)
     this.submitHandler = this.submitHandler.bind(this)
@@ -13,9 +16,16 @@ class MoviesContainer extends Component {
       movies: []
     }
   }
+  
+  //
   changeHandler (ev) {
+    if (ev.target.value === '') {
+      this.setState({ movies: [] })
+    }
     this.setState({ searchTerm: ev.target.value })
   }
+  
+  //
   submitHandler (ev) {
     ev.preventDefault()
     fetchMovies(this.state.searchTerm)
@@ -29,19 +39,18 @@ class MoviesContainer extends Component {
         console.log(error) // eslint-disable-line no-console
       })
   }
+  
+  //
   render() {
     const { movies } = this.state
     return (
       <div>
         <h1>Hello from MoviesContainer</h1>
-        <form action="#" onSubmit={this.submitHandler}>
-          <input
-            type="search"
-            value={this.state.searchTerm}
-            onChange={this.changeHandler}
-            placeholder="Type something and hit enter" />
-        </form>
-        {movies.length && <MovieList movies={movies} />}
+        <MovieInputForm
+          submitHandler={this.submitHandler}
+          searchTerm={this.state.searchTerm}
+          changeHandler={this.changeHandler}/>
+        {movies.length > 0 && <MovieList movies={movies} />}
       </div>
     )
   }
