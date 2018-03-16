@@ -1,12 +1,7 @@
 
 import React, { Component } from 'react'
 import { fetchMovies } from '../service/movie-api'
-
-const renderList = movies => (
-  movies.map(({ id, original_title }) => {
-    return <p key={id}>{original_title}</p>
-  })
-)
+import MovieList from './MovieList'
 
 class MoviesContainer extends Component {
   constructor(props) {
@@ -21,17 +16,17 @@ class MoviesContainer extends Component {
         this.setState({ movies: res.data.results })
       })
       .catch(error => {
-      /*
-      * TODO implement error feedback
-      */
-      console.log(error)
-    })
+        /*
+        * TODO implement error feedback
+        */
+        console.log(error) // eslint-disable-line no-console
+      })
   }
   render() {
     return (
       <div>
         <h1>Hello from MoviesContainer</h1>
-        {renderList(this.state.movies)}
+        <MovieList movies={this.state.movies} />
       </div>
     )
   }
