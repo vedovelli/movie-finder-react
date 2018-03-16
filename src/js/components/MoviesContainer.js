@@ -1,14 +1,13 @@
 
 import React, { Component } from 'react'
+import http from '../service/http'
 
 class MoviesContainer extends Component {
   constructor(props) {
     super(props)
   }
   componentDidMount() {
-    /*
-    * Axios call to the service
-    */
+    http.http.get(`search/movie?api_key=${http.key}&query=pulp+fiction`).then(res => window.console.log(res))
   }
   render() {
     return (
