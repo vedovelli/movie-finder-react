@@ -1,11 +1,12 @@
 
-import React from 'react'
-import MoviesContainer from './MoviesContainer'
+import PropTypes from 'prop-types'
 
-const App = () => {
-  return (
-    <MoviesContainer/>
-  )
+const App = props => {
+  return props.children
+}
+
+App.propTypes = {
+  children: PropTypes.object
 }
 
 export default App
