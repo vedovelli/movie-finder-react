@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 
 const MovieInputForm = props => {
   return (
-    <form action="#" onSubmit={props.submitHandler}>
+    <form className="well" action="#" onSubmit={props.submitHandler}>
+      <label htmlFor="search-input" className="control-label">Type a movie name and hit enter</label>
       <input
+        id="search-input"
+        className="form-control input-lg"
         type="search"
         value={props.searchTerm}
         onChange={props.changeHandler}
-        placeholder="Type something and hit enter" />
+        autoFocus="autoFocus"/>
     </form>
   )
 }
