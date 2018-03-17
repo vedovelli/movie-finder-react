@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { fetchMovie } from '../service/movie-api'
+import { fetchMovie, POSTER_BASE_URL } from '../service/movie-api'
 
 class MovieDetailsContainer extends Component {
   //
@@ -27,11 +27,13 @@ class MovieDetailsContainer extends Component {
   //
   render() {
     const { movie:m } = this.state
+    const src = `${POSTER_BASE_URL}${m.poster_path}`
     return (
-      <div>
-        <h2>{m.original_title}</h2>
-        <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} />
-      </div>
+      m.original_title != null &&
+        <div>
+          <h2>{m.original_title}</h2>
+          {src != null && <img src={src} />}
+        </div>
     )
   }
 }
