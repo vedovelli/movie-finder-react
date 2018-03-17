@@ -27,19 +27,24 @@ class MovieDetailsContainer extends Component {
   //
   render() {
     const { movie:m } = this.state
+    const { history: { goBack } } = this.props
     const src = `${POSTER_BASE_URL}${m.poster_path}`
     return (
       m.original_title != null &&
         <div>
           <h2>{m.original_title}</h2>
           {src != null && <img src={src} />}
+          <p>
+            <a href="#" onClick={() => goBack()}>Back</a>
+          </p>
         </div>
     )
   }
 }
 
 MovieDetailsContainer.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
+  history: PropTypes.object
 }
 
 export default MovieDetailsContainer
