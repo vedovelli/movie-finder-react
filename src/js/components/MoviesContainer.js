@@ -12,9 +12,13 @@ class MoviesContainer extends Component {
   //
   constructor(props) {
     super(props)
+    
     this.submitHandler = this.submitHandler.bind(this)
     this.changeHandler = this.changeHandler.bind(this)
 
+    /*
+    * Performs service calls during navigation
+    */
     this.unlisten = this.props.history.listen(() => {
       this.queryString()
     })
@@ -28,6 +32,15 @@ class MoviesContainer extends Component {
   //
   componentDidMount() {
     this.queryString()
+  }
+
+  //
+  componentWillUnmount() {
+    /*
+    * Prevents multiple listeners to perform
+    * multiple service calls during navigation.
+    */
+    this.unlisten()
   }
   
   //
@@ -72,7 +85,6 @@ class MoviesContainer extends Component {
         */
         console.log(error) // eslint-disable-line no-console
       })
-    this.unlisten()
   }
   
   //
