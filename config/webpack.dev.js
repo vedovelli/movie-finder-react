@@ -1,15 +1,15 @@
 
-const path = require("path");
+const path = require("path")
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devServer: {
-    contentBase: "./dist",
+    contentBase: "../dist",
     historyApiFallback: true
   },
-  entry: ["./src/js/app.js"],
+  entry: [path.resolve(__dirname, "../src/js/app.js")],
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../dist"),
     publicPath: '/',
     filename: "js/[name].js"
   },
@@ -39,4 +39,4 @@ module.exports = {
       filename: "./index.html"
     })
   ]
-};
+}
