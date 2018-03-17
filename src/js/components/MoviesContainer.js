@@ -2,9 +2,9 @@
 import React, { Component } from 'react'
 import queryString from 'query-string'
 import PropTypes from 'prop-types'
-import withErrorHandler from './Error'
 import { fetchMovies } from '../service/movie-api'
 import MovieList from './MovieList'
+import withErrorHandler from '../hoc/ErrorHandler'
 import MovieInputForm from './MovieInputForm'
 
 class MoviesContainer extends Component {

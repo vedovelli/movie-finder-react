@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import withErrorHandler from './Error'
+import withErrorHandler from '../hoc/ErrorHandler'
 import { fetchMovie, POSTER_BASE_URL } from '../service/movie-api'
 
 class MovieDetailsContainer extends Component {
@@ -24,10 +24,11 @@ class MovieDetailsContainer extends Component {
   //
   render() {
     const { movie:m } = this.state
+    const hasMovie = Object.keys(m).length > 0
     const { history: { goBack } } = this.props
     const src = `${POSTER_BASE_URL}${m.poster_path}`
     return (
-      m.original_title != null &&
+      hasMovie &&
         <div>
           <h2>{m.original_title}</h2>
           {src != null && <img src={src} />}
