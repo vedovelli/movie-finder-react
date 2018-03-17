@@ -1,8 +1,9 @@
 
 import React, { Component } from 'react'
 import queryString from 'query-string'
+import PropTypes from 'prop-types'
 import { fetchMovies } from '../service/movie-api'
-import history from '../util/history'
+// import history from '../util/history'
 import MovieList from './MovieList'
 import MovieInputForm from './MovieInputForm'
 
@@ -13,6 +14,11 @@ class MoviesContainer extends Component {
     super(props)
     this.submitHandler = this.submitHandler.bind(this)
     this.changeHandler = this.changeHandler.bind(this)
+
+    this.unlisten = this.props.history.listen(() => {
+      this.queryString()
+    })
+
     this.state = {
       searchTerm: '',
       movies: []
@@ -49,7 +55,9 @@ class MoviesContainer extends Component {
     * The method will check the input and if valid, will request
     * the data for the API.
     */
-    history.addQuery({ query: this.state.searchTerm })
+    const { history } = this.props
+    const query = queryString.stringify({ query: this.state.searchTerm })
+    history.push(`${history.location.pathname}?${query}`)
   }
 
   //
@@ -64,6 +72,7 @@ class MoviesContainer extends Component {
         */
         console.log(error) // eslint-disable-line no-console
       })
+    this.unlisten()
   }
   
   //
@@ -82,6 +91,10 @@ class MoviesContainer extends Component {
       </section>
     )
   }
+}
+
+MoviesContainer.propTypes = {
+  history: PropTypes.object
 }
 
 export default MoviesContainer
