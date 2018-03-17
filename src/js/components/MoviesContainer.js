@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import queryString from 'query-string'
 import { fetchMovies } from '../service/movie-api'
 import MovieList from './MovieList'
 import MovieInputForm from './MovieInputForm'
@@ -16,6 +17,20 @@ class MoviesContainer extends Component {
       movies: []
     }
   }
+
+  //
+  componentDidMount() {
+    this.queryString()
+  }
+  
+  //
+  queryString() {
+    const data = queryString.parse(window.location.search)
+    if (data.query != null && data.query !== '') {
+      this.setState({ searchTerm: data.query })
+      this.fetch(data.query)
+    }
+  }
   
   //
   changeHandler (ev) {
@@ -26,7 +41,19 @@ class MoviesContainer extends Component {
   //
   submitHandler (ev) {
     ev.preventDefault()
-    fetchMovies(this.state.searchTerm)
+    
+    /**
+    * This will append the search term to URL query string
+    * thus triggering the listener with queryString() attached.
+    * The method will check the input and if valid, will request
+    * the data for the API.
+    */
+    window.location.search = queryString.stringify({ query: this.state.searchTerm })
+  }
+
+  //
+  fetch(term) {
+    fetchMovies(term)
       .then(res => {
         this.setState({ movies: res.data.results })
       })
