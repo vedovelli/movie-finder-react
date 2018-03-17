@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import withErrorHandler from './Error'
 import { fetchMovie, POSTER_BASE_URL } from '../service/movie-api'
 
 class MovieDetailsContainer extends Component {
@@ -14,14 +15,10 @@ class MovieDetailsContainer extends Component {
 
   //
   componentDidMount() {
-    fetchMovie(this.props.match.params.id)
+    const { id } = this.props.match.params
+    fetchMovie(id)
       .then(res => this.setState({ movie: res.data }))
-      .catch(error => {
-        /*
-        * TODO: error handler
-        */
-        window.console.log(error) // eslint-disble-line no-console
-      })
+      .catch(() => this.props.errorHandler(`Error fetching movie with the ID of ${id}`))
   }
 
   //
@@ -44,7 +41,8 @@ class MovieDetailsContainer extends Component {
 
 MovieDetailsContainer.propTypes = {
   match: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
+  errorHandler: PropTypes.func
 }
 
-export default MovieDetailsContainer
+export default withErrorHandler(MovieDetailsContainer)

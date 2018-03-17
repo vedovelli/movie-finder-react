@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import queryString from 'query-string'
 import PropTypes from 'prop-types'
+import withErrorHandler from './Error'
 import { fetchMovies } from '../service/movie-api'
 import MovieList from './MovieList'
 import MovieInputForm from './MovieInputForm'
@@ -75,15 +76,8 @@ class MoviesContainer extends Component {
   //
   fetch(term) {
     fetchMovies(term)
-      .then(res => {
-        this.setState({ movies: res.data.results })
-      })
-      .catch(error => {
-        /*
-        * TODO implement error feedback
-        */
-        console.log(error) // eslint-disable-line no-console
-      })
+      .then(res => this.setState({ movies: res.data.results }))
+      .catch(() => this.props.errorHandler('Error fetching the movie\'s list.'))
   }
   
   //
@@ -97,7 +91,7 @@ class MoviesContainer extends Component {
         <MovieInputForm
           submitHandler={this.submitHandler}
           searchTerm={this.state.searchTerm}
-          changeHandler={this.changeHandler}/>
+          changeHandler={this.changeHandler} />
         {movies.length > 0 && <MovieList movies={movies} />}
       </section>
     )
@@ -105,7 +99,8 @@ class MoviesContainer extends Component {
 }
 
 MoviesContainer.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
+  errorHandler: PropTypes.func
 }
 
-export default MoviesContainer
+export default withErrorHandler(MoviesContainer)
