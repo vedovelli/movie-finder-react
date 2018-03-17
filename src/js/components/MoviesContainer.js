@@ -85,14 +85,18 @@ class MoviesContainer extends Component {
     const { movies } = this.state
     return (
       <section>
-        <header>
-          <h1>Movie Finder</h1>
-        </header>
-        <MovieInputForm
-          submitHandler={this.submitHandler}
-          searchTerm={this.state.searchTerm}
-          changeHandler={this.changeHandler} />
-        {movies.length > 0 && <MovieList movies={movies} />}
+        <nav className="navbar navbar-default navbar-inverse navbar-fixed-top">
+          <div className="container-fluid">
+            <span className="navbar-brand">Movie Finder</span>
+          </div>
+        </nav>
+        <div className="container">
+          <MovieInputForm
+            submitHandler={this.submitHandler}
+            searchTerm={this.state.searchTerm}
+            changeHandler={this.changeHandler} />
+          {movies.length > 0 && <MovieList movies={movies} />}
+        </div>
       </section>
     )
   }

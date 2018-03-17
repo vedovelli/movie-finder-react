@@ -30,11 +30,18 @@ class MovieDetailsContainer extends Component {
     return (
       hasMovie &&
         <div>
-          <h2>{m.original_title}</h2>
-          {src != null && <img src={src} />}
-          <p>
-            <a href="#" onClick={() => goBack()}>Back</a>
-          </p>
+          <nav className="navbar navbar-default navbar-inverse navbar-fixed-top">
+            <div className="container-fluid">
+              <span className="navbar-brand">Movie Details</span>
+            </div>
+          </nav>
+          <div className="container">
+            <h3>{m.original_title}</h3>
+            {src != null && <img src={src} />}
+            <p>
+              <a href="#" onClick={() => goBack()}>Back</a>
+            </p>
+          </div>
         </div>
     )
   }
