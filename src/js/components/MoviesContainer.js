@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import queryString from 'query-string'
 import PropTypes from 'prop-types'
 import { fetchMovies } from '../service/movie-api'
-// import history from '../util/history'
 import MovieList from './MovieList'
 import MovieInputForm from './MovieInputForm'
 
