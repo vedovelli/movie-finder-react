@@ -26,23 +26,22 @@ class MovieDetailsContainer extends Component {
     const { movie:m } = this.state
     const hasMovie = Object.keys(m).length > 0
     const { history: { goBack } } = this.props
-    const src = `${POSTER_BASE_URL}${m.poster_path}`
+    const imgSrc = `${POSTER_BASE_URL}${m.poster_path}`
     return (
-      hasMovie &&
-        <div>
-          <nav className="navbar navbar-default navbar-inverse navbar-fixed-top">
-            <div className="container-fluid">
-              <span className="navbar-brand">Movie Details</span>
-            </div>
-          </nav>
-          <div className="container">
-            <h3>{m.original_title}</h3>
-            {src != null && <img src={src} />}
-            <p>
-              <a href="#" onClick={() => goBack()}>Back</a>
-            </p>
+      <div>
+        <nav className="navbar navbar-default navbar-inverse navbar-fixed-top">
+          <div className="container-fluid">
+            <span className="navbar-brand">Movie Details</span>
           </div>
-        </div>
+        </nav>
+        {hasMovie && <div className="container">
+          <h3>{m.original_title}</h3>
+          {imgSrc != null && <img src={imgSrc} />}
+          <p>
+            <a href="#" onClick={() => goBack()}>Back</a>
+          </p>
+        </div>}  
+      </div>
     )
   }
 }

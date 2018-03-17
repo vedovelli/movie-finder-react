@@ -2,21 +2,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { POSTER_BASE_URL } from '../service/movie-api'
 
 const MovieList = props => {
+  //
   return (
-    <ul>
+    <div className="row">
       {
-        props.movies.map(({ id, original_title }) => (
-          <li key={id}>
-            <div>
-              <h4>{original_title}</h4>
-              <Link to={`movie/${id}`}>Details</Link>
+        props.movies.map(movie => {
+          const styles = {
+            backgroundImage: `url(${POSTER_BASE_URL}${movie.poster_path})`,
+            height: 500
+          }
+          return (
+            <div className="col-md-4" key={movie.id}>
+              <Link to={`movie/${movie.id}`}>
+                <div className="panel panel-default">
+                  <div className="panel-body" style={styles}></div>
+                </div>
+              </Link>
             </div>
-          </li>
-        ))
+          )
+        })
       }
-    </ul>
+    </div>
   )
 }
 
