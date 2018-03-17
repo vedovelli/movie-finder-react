@@ -26,8 +26,12 @@ class MovieDetailsContainer extends Component {
 
   //
   render() {
+    const { movie:m } = this.state
     return (
-      <h1>Movie Details</h1>
+      <div>
+        <h2>{m.original_title}</h2>
+        <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} />
+      </div>
     )
   }
 }
