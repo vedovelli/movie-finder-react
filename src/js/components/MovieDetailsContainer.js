@@ -39,20 +39,20 @@ class MovieDetailsContainer extends Component {
           </div>
         </nav>
         {hasMovie && <div className="container container-details">
-          <h2>{data.original_title}</h2>
           <div className="row">
-            <div className="col-md-3">
+            {movie.poster_path != null && <div className="col-md-3">
               {data.imgSrc != null && <img src={data.imgSrc} />}
-            </div>
+            </div>}
             <div className="col-md-9">
-              <p>{movie.overview}</p>
+              <h2>{data.original_title}</h2>
+              <p className="lead">{movie.overview}</p>
               <p><strong>Genres:</strong> {data.genres}</p>
               <p><strong>Release Date:</strong> {data.release_date}</p>
+              <p><strong>Popularity:</strong> {data.popularity} ({data.votes} votes)</p>
+              {data.website && <p><strong>Website:</strong> <a href={data.website}>{data.website}</a></p>}
+              <button className="btn btn-default btn-xs" onClick={() => goBack()}>back</button>
             </div>
           </div>
-          <p>
-            <a href="#" onClick={() => goBack()}>Back</a>
-          </p>
         </div>}  
       </div>
     )
@@ -71,12 +71,14 @@ const formatMovieData = movie => ({
   genres: movie.genres.map(genre => genre.name).join(', '),
   imgSrc: `${POSTER_BASE_URL}${movie.poster_path}`,
   original_title: movie.original_title,
+  popularity: movie.vote_average,
+  votes: movie.vote_count,
+  website: movie.homepage,
   release_date: movie.release_date.split('-').reverse().join('/')
 })
 
+const markup = document.getElementsByTagName('head')[0].innerHTML
 const addBackdrop = movie => {
-  if (movie.backdrop_path == null) return
-  const markup = document.getElementsByTagName('head')[0].innerHTML
   document.getElementsByTagName('head')[0].innerHTML = markup + `
     <style>
       .container-details::before {

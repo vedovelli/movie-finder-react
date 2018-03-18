@@ -27,21 +27,20 @@
       .panel-no-border {
         border: none;
       }
-      .container-details::before {
-        z-index: -1;
-        content: ' ';
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        height: 600px;
-        width: 100%;
-        background-size: cover;
-        opacity: 0.2;
-        filter: blur(1px);
-      }
-      .container-details h2{
-        text-align: center;
+      @media (min-width: 1200px) {
+        .container-details::before {
+          border-bottom: #000 1px solid;
+          z-index: -1;
+          content: ' ';
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          height: 600px;
+          width: 100%;
+          background-size: cover;
+          opacity: 0.2;
+        }
       }
       .container-details img{
         max-width: 280px;
