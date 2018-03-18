@@ -1,0 +1,34 @@
+body {
+  margin-top: 70px;
+}
+.movie-card {
+  background-position: center;
+  background-size: 100%;
+  height: 450px;
+}
+@media (min-width: 1200px) {
+  .movie-card {
+    height: 500px;
+  } 
+}
+.panel-no-border {
+  border: none;
+}
+@media (min-width: 1200px) {
+  .container-details::before {
+    border-bottom: #000 1px solid;
+    z-index: -1;
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+    opacity: 0.2;
+  }
+}
+.container-details img{
+  max-width: 280px;
+}
