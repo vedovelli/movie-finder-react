@@ -1,21 +1,28 @@
 
 import React, { Component } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+
 
 const withErrorHandler = (ReceivedComponent) => {
   const errorHandler = errorMessage => {
-    alert(errorMessage)
+    toast.error(errorMessage, {
+      position: toast.POSITION.TOP_CENTER
+    })
   }
   
-  class HigherOrderComponent extends Component {
+  class ErrorHandler extends Component {
     render() {
       return (
-        <ReceivedComponent
-          errorHandler={errorHandler}
-          {...this.props} />
+        <div>
+          <ToastContainer/>
+          <ReceivedComponent
+            errorHandler={errorHandler}
+            {...this.props} />
+        </div>
       )
     }
   }
-  return HigherOrderComponent
+  return ErrorHandler
 }
 
 export default withErrorHandler
