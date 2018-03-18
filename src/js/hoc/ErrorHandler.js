@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 
-
 const withErrorHandler = (ReceivedComponent) => {
   const errorHandler = errorMessage => {
     toast.error(errorMessage, {
@@ -10,11 +9,11 @@ const withErrorHandler = (ReceivedComponent) => {
     })
   }
   
-  class ErrorHandler extends Component {
+  class ErrorHandlerHOC extends Component {
     render() {
       return (
         <div>
-          <ToastContainer/>
+          <ToastContainer />
           <ReceivedComponent
             errorHandler={errorHandler}
             {...this.props} />
@@ -22,7 +21,7 @@ const withErrorHandler = (ReceivedComponent) => {
       )
     }
   }
-  return ErrorHandler
+  return ErrorHandlerHOC
 }
 
 export default withErrorHandler

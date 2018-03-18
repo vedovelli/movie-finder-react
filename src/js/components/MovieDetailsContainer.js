@@ -25,8 +25,8 @@ class MovieDetailsContainer extends Component {
   render() {
     const { history: { goBack } } = this.props
     const { movie } = this.state
-    if (!hasMovie) return ''
     const hasMovie = Object.keys(movie).length > 0
+    if (!hasMovie) return ''
     const hasPoster = movie.poster_path != null
     const hasWebsite = movie.homepage != null
     const data = formatMovieData(movie)
