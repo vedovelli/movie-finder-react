@@ -25,8 +25,10 @@ class MovieDetailsContainer extends Component {
   render() {
     const { history: { goBack } } = this.props
     const { movie } = this.state
-    const hasMovie = Object.keys(movie).length > 0
     if (!hasMovie) return ''
+    const hasMovie = Object.keys(movie).length > 0
+    const hasPoster = movie.poster_path != null
+    const hasWebsite = movie.homepage != null
     const data = formatMovieData(movie)
 
     addBackdrop(movie)
@@ -40,7 +42,7 @@ class MovieDetailsContainer extends Component {
         </nav>
         {hasMovie && <div className="container container-details">
           <div className="row">
-            {movie.poster_path != null && <div className="col-md-3">
+            {hasPoster && <div className="col-md-3">
               {data.imgSrc != null && <img src={data.imgSrc} />}
             </div>}
             <div className="col-md-9">
@@ -49,7 +51,7 @@ class MovieDetailsContainer extends Component {
               <p><strong>Genres:</strong> {data.genres}</p>
               <p><strong>Release Date:</strong> {data.release_date}</p>
               <p><strong>Popularity:</strong> {data.popularity} ({data.votes} votes)</p>
-              {data.website && <p><strong>Website:</strong> <a href={data.website}>{data.website}</a></p>}
+              {hasWebsite && <p><strong>Website:</strong> <a href={data.website}>{data.website}</a></p>}
               <button className="btn btn-default btn-xs" onClick={() => goBack()}>back</button>
             </div>
           </div>
