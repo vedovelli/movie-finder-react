@@ -25,7 +25,9 @@ class MoviesContainer extends Component {
 
     this.state = {
       searchTerm: '',
-      movies: []
+      hasMovies: false,
+      moviesWithPoster: [],
+      moviesWithoutPoster: []
     }
   }
 
@@ -54,7 +56,13 @@ class MoviesContainer extends Component {
   
   //
   changeHandler (ev) {
-    if (ev.target.value === '') this.setState({ movies: [] })
+    if (ev.target.value === '') {
+      this.setState({
+        hasMovies: false,
+        moviesWithPoster:[],
+        moviesWithoutPoster: []
+      })
+    }
     this.setState({ searchTerm: ev.target.value })
   }
   
@@ -76,13 +84,20 @@ class MoviesContainer extends Component {
   //
   fetch(term) {
     fetchMovies(term)
-      .then(res => this.setState({ movies: res.data.results }))
+      .then(res => {
+        const movies = res.data.results
+        this.setState({
+          hasMovies: movies.length > 0,
+          moviesWithPoster: movies.filter(movie => movie.poster_path != null),
+          moviesWithoutPoster: movies.filter(movie => movie.poster_path == null)
+        })
+      })
       .catch(() => this.props.errorHandler('Error fetching the movie\'s list.'))
   }
   
   //
   render() {
-    const { movies } = this.state
+    const { hasMovies, moviesWithPoster, moviesWithoutPoster } = this.state
     return (
       <section>
         <nav className="navbar navbar-default navbar-inverse navbar-fixed-top">
@@ -95,7 +110,7 @@ class MoviesContainer extends Component {
             submitHandler={this.submitHandler}
             searchTerm={this.state.searchTerm}
             changeHandler={this.changeHandler} />
-          {movies.length > 0 && <MovieList movies={movies} />}
+          {hasMovies && <MovieList moviesWithPoster={moviesWithPoster} moviesWithoutPoster={moviesWithoutPoster} />}
         </div>
       </section>
     )
