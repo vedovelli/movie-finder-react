@@ -57,7 +57,7 @@ npm run prod
 
 ## Project's Details
 
-It is a Single Page Application which consumes data from the TheMovieDB.org's API.
+It is a Single Page Application that consumes data from the TheMovieDB.org's API.
 
 There are 2 routes available: `/movies` for the search form and the results list and `/movie/:id` for the movie details screen.
 
