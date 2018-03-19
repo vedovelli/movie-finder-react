@@ -50,6 +50,12 @@ To build the application for production, just run **npm run prod** and the compi
 npm run prod
 ```
 
+## Screenshots
+
+![Screenshot 1](http://shallow-wood.surge.sh/movie-finder-screenshot-1.png)
+![Screenshot 2](http://shallow-wood.surge.sh/movie-finder-screenshot-2.png)
+
+
 ## Built With
 
 * [React](https://reactjs.org/) - The web framework used
