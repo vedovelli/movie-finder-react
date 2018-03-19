@@ -75,6 +75,12 @@ Despite being highly desirable to abstract application main state to a Single So
 
 For the record if I was to include it I'd go for [Redux Zero](https://matheusml1.gitbooks.io/redux-zero-docs/content/) which I consider a very good solution for small a project.
 
+## Application Evolution
+
+During development an idea came to my mind: to abstract all domain specific logic to a NPM package. For instance: the service layer which performs all the API calls.
+
+Then, using React Native, build a separate application and consume this library.
+
 ## Built With
 
 * [React](https://reactjs.org/) - The web framework used
