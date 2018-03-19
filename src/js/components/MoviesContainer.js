@@ -26,6 +26,7 @@ class MoviesContainer extends Component {
     this.state = {
       searchTerm: '',
       hasMovies: false,
+      searchWasPerformed: false,
       moviesWithPoster: [],
       moviesWithoutPoster: []
     }
@@ -59,6 +60,7 @@ class MoviesContainer extends Component {
     if (ev.target.value === '') {
       this.setState({
         hasMovies: false,
+        searchWasPerformed: false,
         moviesWithPoster:[],
         moviesWithoutPoster: []
       })
@@ -88,6 +90,7 @@ class MoviesContainer extends Component {
         const movies = res.data.results
         this.setState({
           hasMovies: movies.length > 0,
+          searchWasPerformed: true,
           moviesWithPoster: movies.filter(movie => movie.poster_path != null),
           moviesWithoutPoster: movies.filter(movie => movie.poster_path == null)
         })
@@ -97,7 +100,7 @@ class MoviesContainer extends Component {
   
   //
   render() {
-    const { hasMovies, moviesWithPoster, moviesWithoutPoster } = this.state
+    const { hasMovies, moviesWithPoster, moviesWithoutPoster, searchWasPerformed } = this.state
     return (
       <section>
         <nav className="navbar navbar-default navbar-inverse navbar-fixed-top">
@@ -111,6 +114,7 @@ class MoviesContainer extends Component {
             searchTerm={this.state.searchTerm}
             changeHandler={this.changeHandler} />
           {hasMovies && <MovieList moviesWithPoster={moviesWithPoster} moviesWithoutPoster={moviesWithoutPoster} />}
+          {searchWasPerformed && !hasMovies && <h3>Your search returned no results!</h3>}
         </div>
       </section>
     )
