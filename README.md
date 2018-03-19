@@ -52,12 +52,12 @@ npm run prod
 
 ## Screenshots
 
-![Screenshot 1](http://tremendous-station.surge.sh/movie-finder-screenshot-1.png)
-![Screenshot 2](http://tremendous-station.surge.sh/movie-finder-screenshot-2.png)
+![Screenshot 1](http://tough-rifle.surge.sh/movie-finder-screenshot-1.png)
+![Screenshot 2](http://tough-rifle.surge.sh/movie-finder-screenshot-2.png)
 
 ## Project's Details
 
-![Application Diagram](http://tremendous-station.surge.sh/FabioVedovelliMovieFinder.png)
+![Application Diagram](http://tough-rifle.surge.sh/FabioVedovelliMovieFinder.png)
 
 It is a Single Page Application that consumes data from the TheMovieDB.org's API.
 
