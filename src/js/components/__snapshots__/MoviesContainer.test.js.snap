@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesContainer renders component properly 1`] = `
+<div>
+  <ToastContainer
+    autoClose={5000}
+    bodyClassName={null}
+    className={null}
+    closeButton={
+      <DefaultCloseButton
+        ariaLabel="close"
+      />
+    }
+    closeOnClick={true}
+    hideProgressBar={false}
+    newestOnTop={false}
+    pauseOnHover={true}
+    position="top-right"
+    progressClassName={null}
+    rtl={false}
+    style={null}
+    toastClassName={null}
+    transition={[Function]}
+  />
+  <MoviesContainer
+    errorHandler={[Function]}
+  />
+</div>
+`;
